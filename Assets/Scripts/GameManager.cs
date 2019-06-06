@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     public bool isPaused;
 
     public GameObject pauseMenu;
+    public GameObject youLose;
 
     private void Awake()
     {
@@ -44,18 +45,28 @@ public class GameManager : MonoBehaviour
     public void resetGameTime()
     {
         Time.timeScale = 1.0f;
+        isPaused = false;
+    }
+    public void stopGameTime()
+    {
+        Time.timeScale = 0.0f;
+    }
+
+    public void youLoseMenu()
+    {
+        youLose.SetActive(true);
+        resetGame();
     }
 
     public void resetGame()
     {
-        resetGameTime();
         StartCoroutine(resetGameDefaults());
     }
 
     IEnumerator resetGameDefaults()
     {
         yield return new WaitForSeconds (3.0f);
-
+        resetGameTime();
         sceneSwitcher.loadScene("MainMenuScene");
     }
 }

@@ -2,23 +2,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Health : MonoBehaviour
+public abstract class Health : MonoBehaviour
 {
-    public float health;
+    public int health;
 
-    public void reduceHealth(float healthToRemove)
+    protected virtual void Start()
     {
-        health -= healthToRemove;
-        checkDeath();
+        
     }
 
-    private void checkDeath()
+    public virtual void reduceHealth(int healthToRemove)
     {
-        if (health <= 0)
-        {
-            // play particle
-            // play sound
-            Destroy(this.gameObject);
-        }
+
+    }
+
+    protected virtual void checkDeath()
+    {
+
     }
 }
